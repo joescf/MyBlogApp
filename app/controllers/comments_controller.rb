@@ -4,12 +4,10 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @article.comments.new(comment_params)
-    @comment.save
     if @comment.save
       redirect_to @article, :notice => 'Thanks for the comment'
     else
       redirect_to @article, :alert => 'Unable to load comment'
-      puts @comment
     end
   end
 
@@ -26,7 +24,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    puts @comment
-    params.require(:comment).permit(:name, :email, :body)
+    params.require(:comment).permit(:body, :email, :password)
   end
 end
