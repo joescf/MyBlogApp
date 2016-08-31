@@ -7,8 +7,8 @@ class UsersController < ApplicationController
 
     def create
       @user = User.new(ad_params)
-      @user.save
-      if  @user.save
+      if  @user
+        @user.save
         redirect_to articles_path, :notice => 'User successfully added'
       else
         render :action => 'new'

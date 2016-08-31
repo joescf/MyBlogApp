@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
   protected
   # Returns the currently logged in user or nil if there is not one
   def current_user
-    return unless session[:id]
-    @current_user ||= User.find(session[:id])
+    return unless session[:user_id]
+    @current_user ||= User.find(session[:user_id])
   end
   # make current_user available in templates as a helper
   helper_method :current_user

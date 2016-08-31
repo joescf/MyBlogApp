@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_filter :authenticate, :except => [:index, :show]
+  before_filter :authenticate, :except => [:index, :show, :notify_friend]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -64,6 +64,12 @@ class ArticlesController < ApplicationController
       format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def notify_friend
+    @article = Article.find(params[:id])
+    Notifier.email_friend(@article, params[:name], params[:email]).deliver
+    redirect_to @article, :notice => 'Successfully sent a message to your friend'
   end
 
   private

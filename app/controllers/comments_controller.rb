@@ -5,9 +5,15 @@ class CommentsController < ApplicationController
   def create
     @comment = @article.comments.new(comment_params)
     if @comment.save
-      redirect_to @article, :notice => 'Thanks for the comment'
+      respond_to do |format|
+        format.html { redirect_to @article, :notice => 'Thanks for the comment' }
+        format.js
+      end
     else
-      redirect_to @article, :alert => 'Unable to load comment'
+      respond_to do |format|
+        format.html { redirect_to @article, :alert => 'Unable to load comment' }
+        format.js { render 'fail_create.js.erb'}
+      end
     end
   end
 
@@ -15,7 +21,10 @@ class CommentsController < ApplicationController
     @article = current_user.articles.find(params[:article_id])
     @comment = @article.comments.find(params[:id])
     @comment.destroy
-    redirect_to @article, :notice => 'Comment deleted'
+    respond_to do |format|
+      format.html { redirect_to @article, :notice => 'Comment deleted' }
+      format.js
+    end
   end
 
   private
@@ -24,6 +33,6 @@ class CommentsController < ApplicationController
   end
 
   def comment_params
-    params.require(:comment).permit(:body, :email, :password)
+    params.require(:comment).permit(:body, :email, :name)
   end
 end
