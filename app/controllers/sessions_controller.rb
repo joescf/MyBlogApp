@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    if user = User.authenticate(params[:email], params[:password])
+    user = User.authenticate(params[:email], params[:password])
+    if user
       session[:user_id] = user.user_id
       redirect_to root_path, :notice => 'You have logged in successfully'
     else
