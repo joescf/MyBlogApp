@@ -1,4 +1,12 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
-  layout 'mailer'
+  default from: 'joescf@gmail.com'
+
+  def email_friend(article, sender_name, receiver_email)
+
+    @article = article
+    @sender_name = sender_name
+    puts 'hi there me'
+
+    mail :to => receiver_email, :subject => 'Interesting Article'
+  end
 end

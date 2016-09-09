@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20160827230020) do
     t.index ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", primary_key: "user_id", id: :integer, default: -> { "nextval('users_id_seq'::regclass)" }, force: :cascade do |t|
     t.string   "email"
     t.string   "hashed_password"
     t.datetime "created_at",      null: false
