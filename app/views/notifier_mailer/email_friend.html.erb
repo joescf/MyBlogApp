@@ -1,6 +1,14 @@
-<h1>Notifier#email_friend</h1>
+<h1>My Blog App</h1>
 
-<p>
-  <%= @greeting %>, find me in app/views/notifier_mailer/email_friend.html.erb
-</p>
-
+<html>
+  <body>
+    <p>
+      One of your friends, <%= @sender_name%>,
+      thinks you would like an article we have written.
+    </p>
+    <p>
+      Come check out all the information about <strong><%= @article.title %></strong>
+      at <%= article_url @article, :host => 'localhost:3000' %>
+    </p>
+  </body>
+</html>

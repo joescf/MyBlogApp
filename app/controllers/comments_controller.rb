@@ -8,6 +8,7 @@ class CommentsController < ApplicationController
       respond_to do |format|
         format.html { redirect_to @article, :notice => 'Thanks for the comment' }
         format.js
+        NotifierMailer.comment_added(@comment).deliver
       end
     else
       respond_to do |format|

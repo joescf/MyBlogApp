@@ -10,7 +10,8 @@ class Comment < ApplicationRecord
     errors.add(:article_id, 'is not published yet') if article && !article.published?
   end
 
-  # def after_create
-  #   puts 'we will notify #{article.user.email} the author in chapter 9'
-  # end
+  def after_create(comment)
+    NotifierMailer.comment_added(comment).deliver
+    puts 'we will notify #{article.user.email} the author in chapter 9'
+  end
 end

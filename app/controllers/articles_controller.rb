@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :authenticate, :except => [:index, :show, :notify_friend]
+  before_filter :authenticate, :except => [:index, :show, :notify_friend]
   before_action :set_article, only: [:show, :edit, :update, :destroy]
 
   # GET /articles
@@ -68,9 +68,7 @@ class ArticlesController < ApplicationController
 
   def notify_friend
     @article = Article.find(params[:id])
-    # ApplicationMailer.email_friend(@article, params[:name], params[:email]).deliver
-    NotifierMailer.email_friend(@article, params[:name], params[:email]).deliver
-    # NotifierMailer.email_friend(send_email).deliver
+    NotifierMailer.email_friend(@article, params[:name], params[:email], @greeting).deliver
     redirect_to @article, :notice => 'Successfully sent a message to your friend'
   end
 
@@ -85,7 +83,7 @@ class ArticlesController < ApplicationController
     # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    # def article_params
-    #   params.require(:article).permit(:title, :location, :excerpt, :body, :published_at)
-    # end
+    def article_params
+      params.require(:article).permit(:title, :location, :excerpt, :body, :published_at)
+    end
 end
