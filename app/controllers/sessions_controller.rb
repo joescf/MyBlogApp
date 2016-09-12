@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def create
     user = User.authenticate(params[:email], params[:password])
     if user
-      session[:user_id] = user.user_id
+      session[:user_id] = user.id
       redirect_to root_path, :notice => 'You have logged in successfully'
     else
       flash.now[:alert] = 'Invalid login/password combination'
