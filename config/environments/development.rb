@@ -43,7 +43,6 @@ Rails.application.configure do
     :address              => 'smtp.gmail.com',
     :enable_starttls_auto => true,
     :port                 => 587,
-    :domain               => 'https://calm-tundra-73210.herokuapp.com',
     :authentication       => :plain,
     :user_name            => ENV['GMAIL_USERNAME'],
     :password             => ENV['GMAIL_PASSWORD']
