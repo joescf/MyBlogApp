@@ -12,6 +12,8 @@ class NotifierMailer < ApplicationMailer
 
   def comment_added(comment)
     @article = comment.article
+    @comment = comment.body
+    @commenter = comment.name
     mail :to => @article.user.email, :subject => "New comment for '#{@article.title}'"
   end
 end
