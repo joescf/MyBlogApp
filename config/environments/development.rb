@@ -38,11 +38,12 @@ Rails.application.configure do
 
   # Gmail SMTP server setup
   config.action_mailer.delivery_method = :smtp
-  ActionMailer::Base.smtp_settings = {
   # config.action_mailer.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
     :address              => 'smtp.gmail.com',
     :enable_starttls_auto => true,
     :port                 => 587,
+    :domain               => 'https://calm-tundra-73210.herokuapp.com',
     :authentication       => :plain,
     :user_name            => ENV['GMAIL_USERNAME'],
     :password             => ENV['GMAIL_PASSWORD']
