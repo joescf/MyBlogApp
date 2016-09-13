@@ -2,7 +2,7 @@
   <body>
     <p>
       <%= @commenter %> added a comment to one of your articles <i><%= @article.title %></i>.
-      Read the comment at <%= link_to @article.title, article_url(@article, :host => 'localhost:3000') %>
+      Read the comment at <%= link_to @article.title, article_url(@article, :host => 'https://calm-tundra-73210.herokuapp.com') %>
     </p>
     <p>
       The comment says: <%= @comment %>
