@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple blog app made from the book Beginning Rails 3.
 
-Things you may want to cover:
+A user has the ability to create a profile, create a new article, comment on existing articles, and send an email to a friend with a link to the article.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app will also send an email to the articles owner when a comment has been added to one of thier articles.
